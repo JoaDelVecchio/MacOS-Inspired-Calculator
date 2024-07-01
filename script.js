@@ -31,11 +31,66 @@ function operate(operator,num1,num2){
     }
 }
 
+function displayOperation(){
+    displayValue.textContent = num1 + operator +num2 ;
+}
+
 //VARIABLES
 
-let num1,num2,operator = null,displayValue;
+let num1='',
+    num2='',
+    operator ='',
+    displayValue='';
 
 
 //DOM MANIPULATION
 
+// displayValue = document.querySelector("#displayValue");
+// const NumButtons = document.querySelectorAll(".numbersContainer button")
+// NumButtons.forEach(button => {
+//     button.addEventListener("click",()=>{
+//         if (operator == ''){
+//             num1 += button.textContent;
+//         }else if (operator != ''){
+//             num2 += button.textContent;
+//         }
+//         displayOperation();
+//     });
+// });
+
+// const opsButtons = document.querySelectorAll("#operationsButtons button");
+// opsButtons.forEach((button)=>button.addEventListener("click",()=>{
+//     if (button.textContent != "="){
+//         operator = button.textContent;
+//         displayOperation();
+//     }else{
+//         displayValue.textContent = operate(operator,num1,num2);
+//     }
+// }));
+
+const operators = ['+','-','*','/','='];
+const numbers = [0,1,2,3,4,5,6,7,8,9,'.'];
+const functionality = ['R','C','%'];
+
+displayValue = document.querySelector("#displayValue");
+const Buttons = document.querySelectorAll("button")
+Buttons.forEach(button => {
+    button.addEventListener("click",()=>{
+        if (numbers.includes(parseInt(button.textContent))){
+            if (operator == ''){
+                num1 += button.textContent;
+            }else if (operator != ''){
+                num2 += button.textContent;
+            }
+            displayOperation();
+        }else if(operators.includes(button.textContent)){
+                if (button.textContent != "="){
+                    operator = button.textContent;
+                    displayOperation();
+                }else{
+                    displayValue.textContent = operate(operator,num1,num2);
+                }
+        }
+    });
+});
 
