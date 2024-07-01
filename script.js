@@ -13,7 +13,7 @@ function multiply(num1, num2) {
 }
 
 function divide(num1, num2) {
-  return num2 == 0 ? "Error, can not divide by 0" : num1 / num2;
+  return num2 == 0 ? "Error, you can't divide by 0" : num1 / num2;
 }
 
 function operate(operator, num1, num2) {
@@ -41,6 +41,7 @@ let num1 = "",
   num2 = "",
   operator = "",
   displayValue = "";
+  result = "";
 
 const operators = ["+", "-", "*", "/", "="];
 const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."];
@@ -66,12 +67,13 @@ Buttons.forEach((button) => {
       if (button.textContent != "=") {
         operator = button.textContent;
         displayOperation();
-      } else {
-        let result = operate(operator, parseFloat(num1), parseFloat(num2));
+      } else if (result == ''){
+        result = operate(operator, parseFloat(num1), parseFloat(num2));
         displayValue.textContent = result;
-        num1 = result.toString();
-        num2 = "";
-        operator = "";
+      }else{
+        result = operate(operator,result, parseFloat(num2));
+        console.log(result)
+        displayValue.textContent = result;
       }
       // Handle functionality button clicks
     } else if (functionality.includes(button.textContent)) {
@@ -85,6 +87,7 @@ Buttons.forEach((button) => {
           } else {
             operator = "";
           }
+          displayOperation();
           break;
 
         case "C":
@@ -92,19 +95,14 @@ Buttons.forEach((button) => {
           num1 = "";
           num2 = "";
           operator = "";
+          result = "";
+          displayOperation();
           break;
         case "%":
           return null;
           break;
       }
     }
-    displayOperation();
   });
 });
 
-/*
-
-- Cuando toco el igual que siga ejecutando la misma operacion sobre el resultado.
-- Porcentaje 
-
-*/
