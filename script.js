@@ -42,16 +42,17 @@ let num1 = "",
   operator = "",
   displayValue = "";
 
-//DOM MANIPULATION
-
 const operators = ["+", "-", "*", "/", "="];
 const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."];
 const functionality = ["R", "C", "%"];
 
+//DOM MANIPULATION
 displayValue = document.querySelector("#displayValue");
+
 const Buttons = document.querySelectorAll("button");
 Buttons.forEach((button) => {
   button.addEventListener("click", () => {
+    // Handle number button clicks
     if (numbers.includes(button.textContent)) {
       if (operator == "") {
         num1 += button.textContent;
@@ -59,6 +60,8 @@ Buttons.forEach((button) => {
         num2 += button.textContent;
       }
       displayOperation();
+
+      // Handle operators button clicks
     } else if (operators.includes(button.textContent)) {
       if (button.textContent != "=") {
         operator = button.textContent;
@@ -70,9 +73,11 @@ Buttons.forEach((button) => {
         num2 = "";
         operator = "";
       }
+      // Handle functionality button clicks
     } else if (functionality.includes(button.textContent)) {
       switch (button.textContent) {
         case "R":
+          // Remove last character
           if (operator === "") {
             num1 = num1.slice(0, -1);
           } else if (num2 !== "") {
@@ -81,16 +86,25 @@ Buttons.forEach((button) => {
             operator = "";
           }
           break;
+
         case "C":
+          // Clear Display
           num1 = "";
           num2 = "";
           operator = "";
           break;
         case "%":
-            return null;
+          return null;
           break;
       }
     }
     displayOperation();
   });
 });
+
+/*
+
+- Cuando toco el igual que siga ejecutando la misma operacion sobre el resultado.
+- Porcentaje 
+
+*/
