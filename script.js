@@ -13,7 +13,7 @@ function multiply(num1,num2){
 }
 
 function divide(num1,num2){
-    return num1/num2;
+    return num2 == 0? "Error, can not divide by 0" : num1/num2;
 }
 
 function operate(operator,num1,num2){
@@ -33,10 +33,9 @@ function operate(operator,num1,num2){
 
 //VARIABLES
 
-let num1=0,num2,operator = null,displayValue,opsButtons;
+let num1,num2,operator = null,displayValue;
 
 
 //DOM MANIPULATION
-
 
 
